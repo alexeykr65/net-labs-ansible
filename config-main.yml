@@ -5,15 +5,15 @@
   vars:
     ospf_check: False
     do_it: True
-  vars_files:
-    - "vars/data-plp-dmvpn.yml"
-#    - "vars/data-plp-dmvpn-eigrp.yml"
+#   vars_files:
+#     - "vars/data-plp-dmvpn.yml"
+# #    - "vars/data-plp-dmvpn-eigrp.yml"
 
   roles:
     - router-config
     - ospf
-    - dmvpn
-    - eigrp
+#    - dmvpn
+#    - eigrp
   
   tasks:
     - name: Write config to router

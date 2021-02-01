@@ -13,7 +13,7 @@
     - router-config
     - ospf
 #    - dmvpn
-#    - eigrp
+    - eigrp
   
   tasks:
     - name: Write config to router

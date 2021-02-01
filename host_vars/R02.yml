@@ -15,6 +15,18 @@ ospf:
         area: 0
       - net: 10.131.13.0/24
         area: 0
+    passive_int:
+      default_passive: true
+      int_name:
+        - gig2
+        - gig3
+        - gig4
+
+ospf_int:
+  - int_name: Gig3
+    cost: 10
+    net_type: point-to-point
+    priority: 10
 
 ospf_check_rtr:
   my_areas: [0]

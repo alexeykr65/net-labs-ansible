@@ -11,6 +11,18 @@ ospf:
     networks:
       - net: 10.131.13.0/24
         area: 0
+      - net: 192.168.103.0/24
+        area: 0
+    passive_int:
+      default_passive: true
+      int_name:
+        - gig2
+
+ospf_int:
+  - int_name: Gig2
+    cost: 10
+    net_type: broadcast
+    priority: 10
 
 ospf_check_rtr:
   my_areas: [0]
@@ -18,23 +30,23 @@ ospf_check_rtr:
   should_be_asbr: false
   should_be_stub_trt: false
 
-eigrp:
-  - eigrp_name: DMVPN_TUN
-    address_family: 100
-    router_id: 172.31.4.80
-    stub_site: '100:100'      
-    networks:
-      - net: '172.31.10.0/24'
-      - net: '192.168.103.0/24'
-    af_int:
-      - int_name: default
-        passive_int: True        
-      - int_name: Tunnel100
-        split_horizon: no
-        stub_int: True          
-        hello_interval: 10
-        hold_time: 30
-        passive_int: False          
-    delay:
-      - int_name: Tunnel100
-        delay_num: 1000
+# eigrp:
+#   - eigrp_name: DMVPN_TUN
+#     address_family: 100
+#     router_id: 172.31.4.80
+#     stub_site: '100:100'      
+#     networks:
+#       - net: '172.31.10.0/24'
+#       - net: '192.168.103.0/24'
+#     af_int:
+#       - int_name: default
+#         passive_int: True        
+#       - int_name: Tunnel100
+#         split_horizon: no
+#         stub_int: True          
+#         hello_interval: 10
+#         hold_time: 30
+#         passive_int: False          
+#     delay:
+#       - int_name: Tunnel100
+#         delay_num: 1000

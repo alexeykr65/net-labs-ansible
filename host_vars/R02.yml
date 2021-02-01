@@ -1,0 +1,23 @@
+---
+hostname: R02
+vty:
+  num_min: 0
+  num_max: 4
+  exec_timeout: 0
+
+ospf:
+  - id: 10
+    rid: 2.2.2.2
+    networks:
+      - net: 10.131.11.0/24
+        area: 0
+      - net: 10.131.12.0/24
+        area: 0
+      - net: 10.131.13.0/24
+        area: 0
+
+ospf_check_rtr:
+  my_areas: [0]
+  my_nbr_count: 1
+  should_be_asbr: false
+  should_be_stub_trt: false

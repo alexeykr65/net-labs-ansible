@@ -1,0 +1,38 @@
+---
+hostname: R01
+vty:
+  num_min: 0
+  num_max: 4
+  exec_timeout: 0
+
+ospf:
+  - id: 10
+    rid: 1.1.1.1
+    networks:
+      - net: 10.131.11.0/24
+        area: 0
+
+ospf_check_rtr:
+  my_areas: [0]
+  my_nbr_count: 1
+  should_be_asbr: false
+  should_be_stub_trt: false
+
+eigrp:
+  - eigrp_name: DMVPN_TUN
+    address_family: 100
+    router_id: 10.120.0.3
+    networks:
+      - net: '172.31.10.0/24'
+      - net: '192.168.101.0/24'
+    af_int:
+      - int_name: default
+        passive_int: True        
+      - int_name: Tunnel100
+        split_horizon: no
+        hello_interval: 10
+        hold_time: 30
+        passive_int: False
+    delay:
+      - int_name: Tunnel100
+        delay_num: 1000

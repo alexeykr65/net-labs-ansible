@@ -1,0 +1,24 @@
+---
+hostname: R03
+vty:
+  num_min: 0
+  num_max: 4
+  exec_timeout: 0
+
+nat:
+  inside: GigabitEthernet3
+  outside: GigabitEthernet2
+  ipnat: list 100 interface GigabitEthernet2 overload
+
+ospf:
+  - id: 10
+    rid: 3.3.3.3
+    networks:
+      - net: 10.131.12.0/24
+        area: 0
+
+ospf_check_rtr:
+  my_areas: [0]
+  my_nbr_count: 1
+  should_be_asbr: false
+  should_be_stub_trt: false

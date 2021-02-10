@@ -8,6 +8,17 @@ vty:
 ospf:
   - id: 10
     rid: 1.1.1.1
+    auto_cost: reference-bandwidth 101
+    distance_ospf_ext: 
+    distance_ospf_intra:
+    distance_ospf_inter:
+    timers_throttle_spf: spf-start spf-hold spf-max-wait
+    log_adjacency_changes: detail
+    # default_info: "always metric 10 metric-type 2"
+    areas:
+      - area: 2
+        default-cost: 1  # cost for default summary route that is sent into a stub area or NSSA
+        stub: False
     networks:
       - net: 10.131.11.0/24
         area: 0
@@ -23,6 +34,12 @@ ospf_int:
     cost: 10
     net_type: broadcast
     priority: 10
+    retransmit_interval: 5
+    transmit_delay: 1
+    hello_interval: 10
+    dead_interval: 40
+    demand_circuit: False
+
 
 ospf_check_rtr:
   my_areas: [0]

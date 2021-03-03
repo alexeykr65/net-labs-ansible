@@ -1,0 +1,23 @@
+---
+- name: Configure servers
+  hosts: servers
+  connection: ssh
+  
+  tasks:
+    - name: PRE >> upgrade all packages
+      dnf:
+        name: '*'
+        state: latest    
+        update_cache: yes        
+
+    - name: PRE >> Add some packages
+      dnf:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - chrony
+          - wget
+
+    - name: PRE >> Reboot machine
+      reboot:  

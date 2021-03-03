@@ -1,6 +1,6 @@
 ---
 - name: Configure OSPF on Cisco vIOS
-  hosts: all
+  hosts: routers
   connection: local
   vars:
     ospf_check: False
